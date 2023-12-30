@@ -26,10 +26,10 @@ jobs:
         run: pnpm install
 
       - name: Linting
-        run: pnpm run lint
+        run: pnpm lint
 
       - name: Testing
-        run: pnpm run test
+        run: pnpm test
 
       - name: Build
-        run: pnpm run build
+        run: pnpm build
