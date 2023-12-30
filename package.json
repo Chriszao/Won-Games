@@ -16,6 +16,8 @@
 		"generate": "npx plop --plopfile generators/plopfile.mjs"
 	},
 	"dependencies": {
+		"@styled-icons/material-outlined": "10.47.0",
+		"AddShoppingCart": "link:@styled-icons/material-outlined/AddShoppingCart",
 		"next": "13.4.19",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",

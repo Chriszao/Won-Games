@@ -2,11 +2,6 @@
 
 import styled, { type DefaultTheme, css } from "styled-components";
 
-type WrapperProps = {
-	$size: "small" | "medium" | "large";
-	$fullWidth: boolean;
-};
-
 const wrapperModifiers = {
 	small: (theme: DefaultTheme) => css`
 		height: 3rem;
@@ -28,17 +23,39 @@ const wrapperModifiers = {
 	fullWidth: () => css`
 		width: 100%;
 	`,
+
+	withIcon: (theme: DefaultTheme) => css`
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+
+		svg {
+			width: 1.5rem;
+
+			& + span {
+				margin-left: ${theme.spacings.xxsmall};
+			}
+		}
+	`,
+};
+
+type WrapperProps = {
+	$size: "small" | "medium" | "large";
+	$fullWidth: boolean;
+	$hasIcon: boolean;
 };
 
 export const Wrapper = styled.button<WrapperProps>`
-	${({ theme, $size, $fullWidth }) => css`
+	${({ theme, $size, $fullWidth, $hasIcon }) => css`
 		background: linear-gradient(180deg, #ff5f5f 0%, #f062c0 50%);
 		color: ${theme.colors.white};
 		border: none;
 		border-radius: ${theme.border.radius};
 		padding: ${theme.spacings.xxsmall};
+		cursor: pointer;
 
 		${wrapperModifiers[$size](theme)}
 		${!!$fullWidth && wrapperModifiers.fullWidth}
+		${!!$hasIcon && wrapperModifiers.withIcon(theme)}
 	`}
 `;
