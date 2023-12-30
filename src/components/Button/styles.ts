@@ -4,6 +4,7 @@ import styled, { type DefaultTheme, css } from "styled-components";
 
 type WrapperProps = {
 	$size: "small" | "medium" | "large";
+	$fullWidth: boolean;
 };
 
 const wrapperModifiers = {
@@ -23,10 +24,14 @@ const wrapperModifiers = {
 		font-size: ${theme.font.sizes.medium};
 		padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
 	`,
+
+	fullWidth: () => css`
+		width: 100%;
+	`,
 };
 
 export const Wrapper = styled.button<WrapperProps>`
-	${({ theme, $size }) => css`
+	${({ theme, $size, $fullWidth }) => css`
 		background: linear-gradient(180deg, #ff5f5f 0%, #f062c0 50%);
 		color: ${theme.colors.white};
 		border: none;
@@ -34,5 +39,6 @@ export const Wrapper = styled.button<WrapperProps>`
 		padding: ${theme.spacings.xxsmall};
 
 		${wrapperModifiers[$size](theme)}
+		${!!$fullWidth && wrapperModifiers.fullWidth}
 	`}
 `;

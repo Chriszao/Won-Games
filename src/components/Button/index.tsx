@@ -5,10 +5,17 @@ import * as S from "./styles";
 export type ButtonProps = {
 	children?: ReactNode;
 	size?: "small" | "medium" | "large";
+	fullWidth?: boolean;
 };
 
-export function Button({ children, size = "medium" }: ButtonProps) {
+export function Button({
+	children,
+	size = "medium",
+	fullWidth = false,
+}: ButtonProps) {
 	return (
-		<S.Wrapper $size={size}> {!!children && <span>{children}</span>}</S.Wrapper>
+		<S.Wrapper $fullWidth={fullWidth} $size={size}>
+			{!!children && <span>{children}</span>}
+		</S.Wrapper>
 	);
 }

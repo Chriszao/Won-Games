@@ -34,4 +34,12 @@ describe("<Button />", () => {
 			padding: `${theme.spacings.xxsmall} ${theme.spacings.xlarge}`,
 		});
 	});
+
+	it("should render the fullWidth size when passed", () => {
+		renderWithTheme(<Button fullWidth>Buy now</Button>);
+
+		expect(screen.getByRole("button", { name: /Buy now/i })).toHaveStyle({
+			width: "100%",
+		});
+	});
 });
