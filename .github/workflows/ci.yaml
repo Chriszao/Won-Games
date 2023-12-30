@@ -4,24 +4,32 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+		strategy:
+      matrix:
+        node-version: [18.x]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          cache: 'npm'
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v2
+				with:
+					version: 8
+
+			- name: Use Node.js ${{ matrix.node-version }}
+				uses: actions/setup-node@v3
+				with:
+					node-version: ${{ matrix.node-version }}
+					cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Linting
-        run: npm run lint
+        run: pnpm run lint
 
       - name: Testing
-        run: npm run test
+        run: pnpm run test
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
