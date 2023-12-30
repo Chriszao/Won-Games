@@ -16,6 +16,7 @@ module.exports = {
 		"^.+\\.(js|jsx|ts|tsx)$": "@swc/jest",
 	},
 	moduleNameMapper: {
+		"~/(.*)": "<rootDir>/src/$1",
 		"^styled-components":
 			"styled-components/dist/styled-components.browser.cjs.js",
 	},

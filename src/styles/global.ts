@@ -1,23 +1,56 @@
 "use client";
 
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
+	${({ theme }) => css`
+		@font-face {
+			font-display: swap;
+			font-family: ${theme.font.family};
+			font-style: normal;
+			font-weight: ${theme.font.light};
+			src: url("/fonts/poppins-v20-latin-300.woff2") format("woff2");
+		}
 
-	html {
-		font-size: 62.5%; // 1rem = 10px
-	}
+		@font-face {
+			font-display: swap;
+			font-family: ${theme.font.family};
+			font-style: normal;
+			font-weight: ${theme.font.normal};
+			src: url("/fonts/poppins-v20-latin-regular.woff2") format("woff2");
+		}
 
-	html, body, #__next {
-		height: 100%;
-	}
+		@font-face {
+			font-display: swap;
+			font-family: ${theme.font.family};
+			font-style: normal;
+			font-weight: ${theme.font.bold};
+			src: url("/fonts/poppins-v20-latin-600.woff2") format("woff2");
+		}
 
-	body {
-		font-family: --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	}
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		html {
+			font-size: 62.5%; // 1rem = 10px
+		}
+
+		html,
+		body,
+		#__next {
+			height: 100%;
+		}
+
+		body {
+			font-family: "Poppins", --apple-system, BlinkMacSystemFont, "Segoe UI",
+				Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+				sans-serif;
+			font-size: ${theme.font.sizes.medium};
+		}
+	`}
 `;
