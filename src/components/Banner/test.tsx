@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 
+import { theme } from "~/styles/theme";
 import { renderWithTheme } from "~/utils/tests";
 
 import { Banner, type BannerProps } from ".";
@@ -26,5 +27,27 @@ describe("<Banner />", () => {
 			screen.getByRole("img", { name: /Defy death/i }),
 		).toBeInTheDocument();
 		expect(container.firstChild).toMatchSnapshot();
+	});
+
+	it("should render a ribbon", () => {
+		renderWithTheme(
+			<Banner
+				{...props}
+				ribbon="My Ribbon"
+				ribbonSize="small"
+				ribbonColor="secondary"
+			/>,
+		);
+
+		const ribbonElement = screen.getByText(/My Ribbon/i);
+
+		expect(ribbonElement).toBeInTheDocument();
+		expect(ribbonElement).toHaveStyle({
+			backgroundColor: theme.colors.secondary,
+		});
+		expect(ribbonElement).toHaveStyle({
+			height: "2.6rem",
+			fontSize: theme.font.sizes.xsmall,
+		});
 	});
 });
