@@ -8,6 +8,7 @@ import { useState } from "react";
 
 import { Logo } from "~/components/Logo";
 
+import { Button } from "../Button";
 import * as S from "./styles";
 
 export function Menu() {
@@ -35,6 +36,23 @@ export function Menu() {
 
 			<S.MenuFull $isOpen={isOpen} aria-hidden={!isOpen}>
 				<CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
+
+				<S.MenuNav>
+					<S.MenuLink href="#">Home</S.MenuLink>
+					<S.MenuLink href="#">Explore</S.MenuLink>
+				</S.MenuNav>
+
+				<S.RegisterBox>
+					<Button fullWidth size="large">
+						Log in now
+					</Button>
+
+					<span>or</span>
+
+					<S.CreateAccount href="#" title="Sign Up">
+						Sign Up
+					</S.CreateAccount>
+				</S.RegisterBox>
 			</S.MenuFull>
 		</S.Wrapper>
 	);
