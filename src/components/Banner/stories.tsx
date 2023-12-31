@@ -12,6 +12,11 @@ export default {
 		buttonLink: "/games/defy-death",
 		buttonLabel: "Buy now",
 	},
+	argTypes: {
+		ribbon: {
+			type: "string",
+		},
+	},
 	parameters: {
 		layout: "fullscreen",
 	},
@@ -33,12 +38,6 @@ export const WithRibbon: StoryFn<BannerProps> = (args) => (
 		<Banner {...args} />
 	</div>
 );
-
-WithRibbon.argTypes = {
-	ribbon: {
-		type: "string",
-	},
-};
 
 WithRibbon.args = {
 	ribbon: "20% OFF",
