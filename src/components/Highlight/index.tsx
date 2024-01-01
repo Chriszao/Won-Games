@@ -6,6 +6,9 @@ export type HighlightProps = {
 	subtitle: string;
 	buttonLabel: string;
 	buttonLink: string;
+	backgroundImage: string;
+	floatImage?: string;
+	alignment?: "right" | "left";
 };
 
 export function Highlight({
@@ -13,15 +16,21 @@ export function Highlight({
 	subtitle,
 	buttonLabel,
 	buttonLink,
+	backgroundImage,
+	floatImage,
+	alignment = "right",
 }: HighlightProps) {
 	return (
-		<S.Wrapper>
-			<S.Title>{title}</S.Title>
-			<S.Subtitle>{subtitle}</S.Subtitle>
+		<S.Wrapper $backgroundImage={backgroundImage} $alignment={alignment}>
+			{floatImage && <S.FloatImage src={floatImage} alt={title} />}
+			<S.Content>
+				<S.Title>{title}</S.Title>
+				<S.Subtitle>{subtitle}</S.Subtitle>
 
-			<Button as="a" href={buttonLink}>
-				{buttonLabel}
-			</Button>
+				<Button as="a" href={buttonLink}>
+					{buttonLabel}
+				</Button>
+			</S.Content>
 		</S.Wrapper>
 	);
 }
