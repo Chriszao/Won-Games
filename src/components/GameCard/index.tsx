@@ -1,5 +1,6 @@
 import {
 	AddShoppingCart,
+	Favorite,
 	FavoriteBorder,
 } from "@styled-icons/material-outlined";
 import Image from "next/image";
@@ -13,6 +14,8 @@ export type GameCardProps = {
 	img: string;
 	price: string;
 	promotionalPrice?: string;
+	favorite?: boolean;
+	onFavoriteClick?: () => void;
 };
 
 export function GameCard({
@@ -21,6 +24,8 @@ export function GameCard({
 	title,
 	developer,
 	promotionalPrice,
+	favorite = false,
+	onFavoriteClick,
 }: GameCardProps) {
 	return (
 		<S.Wrapper>
@@ -34,8 +39,12 @@ export function GameCard({
 					<S.Developer>{developer}</S.Developer>
 				</S.Info>
 
-				<S.FavButton role="button">
-					<FavoriteBorder aria-label="Add to wishlist" />
+				<S.FavButton role="button" onClick={onFavoriteClick}>
+					{favorite ? (
+						<Favorite aria-label="Remove from wishlist" />
+					) : (
+						<FavoriteBorder aria-label="Add to wishlist" />
+					)}
 				</S.FavButton>
 
 				<S.BuyBox>

@@ -12,6 +12,11 @@ export default {
 		developer: "Rockstar Games",
 		promotionalPrice: "R$ 200,00",
 	},
+	argTypes: {
+		onFavoriteClick: {
+			action: "Clicked",
+		},
+	},
 } as Meta;
 
 export const Default: StoryFn<GameCardProps> = (args) => (

@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import { theme } from "~/styles/theme";
 import { renderWithTheme } from "~/utils/tests";
@@ -43,7 +43,7 @@ describe("<GameCard />", () => {
 		});
 	});
 
-	it("should render a linethrough in price when promotional", () => {
+	it("should render a line-through in price when promotional", () => {
 		renderWithTheme(<GameCard promotionalPrice="R$ 200,00" {...props} />);
 
 		const priceElement = screen.getByText(props.price);
@@ -56,5 +56,23 @@ describe("<GameCard />", () => {
 		expect(promotionalPriceElement).not.toHaveStyle({
 			textDecoration: "line-through",
 		});
+	});
+
+	it("should render a filled Favorite icon when is true", () => {
+		renderWithTheme(<GameCard favorite {...props} />);
+
+		expect(screen.getByLabelText(/remove from wishlist/i)).toBeInTheDocument();
+	});
+
+	it("should call onFavoriteClick method when favorite is clicked", () => {
+		const onFavoriteClick = jest.fn();
+
+		renderWithTheme(
+			<GameCard {...props} onFavoriteClick={onFavoriteClick} favorite />,
+		);
+
+		fireEvent.click(screen.getAllByRole("button")[0]);
+
+		expect(onFavoriteClick).toBeCalled();
 	});
 });
