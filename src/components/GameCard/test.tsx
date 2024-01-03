@@ -75,4 +75,19 @@ describe("<GameCard />", () => {
 
 		expect(onFavoriteClick).toBeCalled();
 	});
+
+	it("should render a ribbon", () => {
+		renderWithTheme(
+			<GameCard {...props} ribbon="20% OFF" ribbonColor="secondary" />,
+		);
+
+		const ribbon = screen.getByText(/20% OFF/i);
+
+		expect(ribbon).toBeInTheDocument();
+		expect(ribbon).toHaveStyle({
+			backgroundColor: theme.colors.secondary,
+			height: "2.6rem",
+			fontSize: "1.2rem",
+		});
+	});
 });

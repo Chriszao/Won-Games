@@ -16,6 +16,9 @@ export default {
 		onFavoriteClick: {
 			action: "Clicked",
 		},
+		ribbon: {
+			type: "string",
+		},
 	},
 } as Meta;
 
@@ -24,3 +27,15 @@ export const Default: StoryFn<GameCardProps> = (args) => (
 		<GameCard {...args} />
 	</div>
 );
+
+export const WithRibbon: StoryFn<GameCardProps> = (args) => (
+	<div style={{ width: "30rem" }}>
+		<GameCard {...args} />
+	</div>
+);
+
+WithRibbon.args = {
+	ribbon: "20% OFF",
+	ribbonColor: "primary",
+	ribbonSize: "small",
+};

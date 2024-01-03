@@ -4,8 +4,10 @@ import {
 	FavoriteBorder,
 } from "@styled-icons/material-outlined";
 import Image from "next/image";
+import { type ReactNode } from "react";
 
 import { Button } from "../Button";
+import { Ribbon, type RibbonColors, type RibbonSizes } from "../Ribbon";
 import * as S from "./styles";
 
 export type GameCardProps = {
@@ -16,6 +18,9 @@ export type GameCardProps = {
 	promotionalPrice?: string;
 	favorite?: boolean;
 	onFavoriteClick?: () => void;
+	ribbon?: ReactNode;
+	ribbonSize?: RibbonSizes;
+	ribbonColor?: RibbonColors;
 };
 
 export function GameCard({
@@ -26,9 +31,18 @@ export function GameCard({
 	promotionalPrice,
 	favorite = false,
 	onFavoriteClick,
+	ribbon,
+	ribbonColor = "primary",
+	ribbonSize = "small",
 }: GameCardProps) {
 	return (
 		<S.Wrapper>
+			{!!ribbon && (
+				<Ribbon color={ribbonColor} size={ribbonSize}>
+					{ribbon}
+				</Ribbon>
+			)}
+
 			<S.ImageBox>
 				<Image src={img} alt={title} width={300} height={140} />
 			</S.ImageBox>
