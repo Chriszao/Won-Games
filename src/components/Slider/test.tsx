@@ -1,13 +1,24 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+
+import { renderWithTheme } from "~/utils/tests";
 
 import { Slider } from ".";
 
 describe("<Slider />", () => {
-	it("should render the heading", () => {
-		const { container } = render(<Slider />);
+	it("should render children as slider item", () => {
+		const { container } = renderWithTheme(
+			<Slider settings={{ slidesToShow: 1, infinite: false }}>
+				<p>Item 1</p>
+				<p>Item 2</p>
+			</Slider>,
+		);
 
-		expect(screen.getByRole("heading", { name: /Slider/i })).toBeInTheDocument();
-
+		expect(
+			screen.getByText(/Item 1/i).parentElement?.parentElement,
+		).toHaveClass("slick-slide");
+		expect(
+			screen.getByText(/Item 2/i).parentElement?.parentElement,
+		).toHaveClass("slick-slide");
 		expect(container.firstChild).toMatchSnapshot();
 	});
 });

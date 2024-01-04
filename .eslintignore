@@ -1,3 +1,4 @@
 .jest
 .storybook
 generators
+jest.config.js
