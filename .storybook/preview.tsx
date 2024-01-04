@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components";
 
 import { GlobalStyles } from "../src/styles/global";
 import { theme } from "../src/styles/theme";
+import { Preview } from "@storybook/react";
 
 export const decorators = [
 	(Story) => (
@@ -12,3 +13,23 @@ export const decorators = [
 		</ThemeProvider>
 	),
 ];
+
+const preview: Preview = {
+	parameters: {
+		backgrounds: {
+			default: "won-light",
+			values: [
+				{
+					name: "won-light",
+					value: theme.colors.white,
+				},
+				{
+					name: "won-dark",
+					value: theme.colors.mainBg,
+				},
+			],
+		},
+	},
+};
+
+export default preview;
