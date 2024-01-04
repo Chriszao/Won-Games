@@ -139,6 +139,9 @@ devDependencies:
   prettier:
     specifier: 3.0.3
     version: 3.0.3
+  prettier-2:
+    specifier: npm:prettier@^2
+    version: /prettier@2.8.8
   storybook:
     specifier: 7.4.0
     version: 7.4.0

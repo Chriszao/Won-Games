@@ -15,6 +15,7 @@ module.exports = {
 	transform: {
 		"^.+\\.(js|jsx|ts|tsx)$": "@swc/jest",
 	},
+	prettierPath: require.resolve("prettier-2"),
 	moduleNameMapper: {
 		"~/(.*)": "<rootDir>/src/$1",
 		"^styled-components":
