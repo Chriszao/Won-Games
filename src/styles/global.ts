@@ -1,9 +1,14 @@
 "use client";
 
+import { type NamedExoticComponent } from "react";
 import { createGlobalStyle, css } from "styled-components";
 
-export const GlobalStyles = createGlobalStyle`
-	${({ theme }) => css`
+type GlobalStylesProps = {
+	$removeBg?: boolean;
+};
+
+export const GlobalStyles: NamedExoticComponent<GlobalStylesProps> = createGlobalStyle`
+	${({ theme, $removeBg }) => css`
 		@font-face {
 			font-display: swap;
 			font-family: ${theme.font.family};
@@ -34,6 +39,11 @@ export const GlobalStyles = createGlobalStyle`
 			box-sizing: border-box;
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
+
+			&::before,
+			&::after {
+				box-sizing: inherit;
+			}
 		}
 
 		html {
@@ -51,6 +61,10 @@ export const GlobalStyles = createGlobalStyle`
 				Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
 				sans-serif;
 			font-size: ${theme.font.sizes.medium};
+			${!$removeBg &&
+			css`
+				background-color: ${theme.colors.mainBg};
+			`}
 		}
 	`}
 `;
